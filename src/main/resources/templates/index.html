@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Contact list</title>
+</head>
+<body>
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Contact List</span>
+    </div>
+</nav>
+
+<div class = "row">
+    <div class="col-lg-3">
+        <a th:href="@{/contacts/new}" class="btn btn-info">ADD</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Cell</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact:${allContacts}">
+
+        <th th:text = "${contact.id}" ></th>
+        <th th:text = "${contact.name}" ></th>
+        <th th:text = "${contact.surname}" ></th>
+        <th th:text = "${contact.email}" ></th>
+        <th th:text = "${contact.cellPhone}" ></th>
+        <th>
+            <a th:href="@{/contacts/update/{id}(id=${contact.id})}" class="btn btn-info">Update</a>
+            <a th:href="@{/contacts/{id}(id=${contact.id})}" class="btn btn-danger">Delete</a>
+
+        </th>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>
